@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_estate_property_user,estate.property.user,model_estate_property,estate.property_user_group,1,1,1,0
+access_estate_property_manager,estate.property.manager,model_estate_property,estate.property_manager_group,1,1,1,1
+access_estate_property_line_user,estate.property.line.user,model_estate_property_line,estate.property_user_group,1,1,1,1
+access_estate_property_line_manager,estate.property.line.manager,model_estate_property_line,estate.property_manager_group,1,1,1,1
+access_estate_owner_user,estate.owner.user,model_estate_owner,estate.property_user_group,1,1,1,0
+access_estate_owner_manager,estate.owner.manager,model_estate_owner,estate.property_manager_group,1,1,1,1
+access_estate_tag_user,estate.tag.user,model_estate_tag,estate.property_user_group,1,0,0,0
+access_estate_tag_manager,estate.tag.manager,model_estate_tag,estate.property_manager_group,1,1,1,1
+access_estate_building_user,estate.building.user,model_estate_building,estate.property_user_group,1,0,0,0
+access_estate_building_manager,estate.building.manager,model_estate_building,estate.property_manager_group,1,1,1,1
+access_estate_property_history_user,estate.property.history.user,model_estate_property_history,estate.property_user_group,1,0,0,0
+access_estate_property_history_manager,estate.property.history.manager,model_estate_property_history,estate.property_manager_group,1,0,0,0
+access_estate_client_manager,estate.client.manager,model_estate_client,estate.property_manager_group,1,1,1,1

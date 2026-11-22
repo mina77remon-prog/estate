@@ -1,0 +1,75 @@
+<odoo>
+    <record id="property_category" model="ir.module.category">
+        <field name="name">Real Estate</field>
+    </record>
+
+    <record id="property_user_group" model="res.groups">
+        <field name="name">Property User</field>
+        <field name="category_id" ref="estate.property_category"/>
+        <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+    </record>
+
+    <record id="property_manager_group" model="res.groups">
+        <field name="name">Property Manager</field>
+        <field name="category_id" ref="estate.property_category"/>
+        <field name="implied_ids" eval="[(4, ref('estate.property_user_group'))]"/>
+        <field name="users" eval="[(4, ref('base.user_root')), (4, ref('base.user_admin'))]"/>
+    </record>
+
+    <record id="property_record_rule_by_user" model="ir.rule">
+        <field name="name">Property: users see their own</field>
+        <field name="model_id" ref="estate.model_estate_property"/>
+        <field name="domain_force">[('create_uid', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('estate.property_user_group'))]"/>
+    </record>
+
+    <record id="property_record_rule_manager" model="ir.rule">
+        <field name="name">Property: managers see all</field>
+        <field name="model_id" ref="estate.model_estate_property"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('estate.property_manager_group'))]"/>
+    </record>
+
+    <record id="property_history_record_rule_by_user" model="ir.rule">
+        <field name="name">Property History: users see their own</field>
+        <field name="model_id" ref="estate.model_estate_property_history"/>
+        <field name="domain_force">[('property_id.create_uid', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('estate.property_user_group'))]"/>
+    </record>
+
+    <record id="property_history_record_rule_manager" model="ir.rule">
+        <field name="name">Property History: managers see all</field>
+        <field name="model_id" ref="estate.model_estate_property_history"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('estate.property_manager_group'))]"/>
+    </record>
+
+    <record id="property_line_record_rule_by_user" model="ir.rule">
+        <field name="name">Property Line: users see their own</field>
+        <field name="model_id" ref="estate.model_estate_property_line"/>
+        <field name="domain_force">[('property_id.create_uid', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('estate.property_user_group'))]"/>
+    </record>
+
+    <record id="property_line_record_rule_manager" model="ir.rule">
+        <field name="name">Property Line: managers see all</field>
+        <field name="model_id" ref="estate.model_estate_property_line"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('estate.property_manager_group'))]"/>
+    </record>
+
+
+    <record id="owner_record_rule_by_user" model="ir.rule">
+        <field name="name">Owner: users see their own owners</field>
+        <field name="model_id" ref="estate.model_estate_owner"/>
+        <field name="domain_force">['|', ('create_uid', '=', user.id), ('property_ids.create_uid', '=', user.id)]</field>
+        <field name="groups" eval="[(4, ref('estate.property_user_group'))]"/>
+    </record>
+
+    <record id="owner_record_rule_manager" model="ir.rule">
+        <field name="name">Owner: managers see all</field>
+        <field name="model_id" ref="estate.model_estate_owner"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+        <field name="groups" eval="[(4, ref('estate.property_manager_group'))]"/>
+    </record>
+</odoo>
