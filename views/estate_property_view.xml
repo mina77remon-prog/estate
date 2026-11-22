@@ -6,7 +6,7 @@
             <tree class="header_custom" decoration-danger="(is_late)">
                 <field name="name"/>
                 <field name="postcode"/>
-                <field name="is_late" invisible="True"/>
+                <field name="is_late" column_invisible="True"/>
                 <field name="owner_id"/>
                 <field name="date_availability"/>
                 <field name="selling_price"/>   
